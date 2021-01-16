@@ -9,7 +9,6 @@ import Signin from "./components/signin";
 function App() {
   return (
     <Router>
-      <div>
         <nav className=" light-blue accent-4">
           <div className="nav-wrapper">
             <ul id="nav-mobile" class="left hide-on-med-and-down">
@@ -32,30 +31,13 @@ function App() {
         </nav>
 
         <Switch>
-          <Route path="/list">
-            <ListaOperaciones />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/signin">
-            <Signin />
-          </Route>
-          <Route exact path="/">
-            <Home />
-          </Route>
+          <Route path="/list" component={ListaOperaciones} />
+          <Route path="/login" component={Login}/>
+          <Route path="/signin" component={Signin}/>
+          <Route exact path="/" component={Home}/>
         </Switch>
-      </div>
     </Router>
   );
-}
-
-function About() {
-  return <h2>Listado de operaciones</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
 }
 
 export default App;

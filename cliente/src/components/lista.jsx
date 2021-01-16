@@ -1,7 +1,7 @@
 import React from "react";
 
 import Modal from "./modal";
-import ModalUpdate from "./modalUpdate"
+import ModalUpdate from "./modalUpdate";
 
 class ListaOperaciones extends React.Component {
   constructor() {
@@ -40,7 +40,6 @@ class ListaOperaciones extends React.Component {
       .catch((error) => console.error("Error:", error));
   };
 
-
   async componentDidMount() {
     await this.getOperations();
   }
@@ -63,28 +62,30 @@ class ListaOperaciones extends React.Component {
           </thead>
 
           <tbody>
-            {this.state.datos.map((dato, i) => (
-              <tr key={i}>
-                <td>{dato.concept}</td>
-                <td>{dato.amount}</td>
-                <td>{dato.date}</td>
-                <td>{dato.type}</td>
-                <td>{dato.category}</td>
-                <td>
-                  <button
-                    className="btn-floating red "
-                    onClick={() => this.delete(dato._id)}
-                  >
-                    <i className="material-icons">delete</i>
-                  </button>
-                  <ModalUpdate operation={dato} />
-                </td>
-              </tr>
-            ))}
+            {this.state.datos.map((dato, i) => {
+              return (
+                <tr key={i}>
+                  <td>{dato.concept}</td>
+                  <td>{dato.amount}</td>
+                  <td>{dato.date}</td>
+                  <td>{dato.type}</td>
+                  <td>{dato.category}</td>
+                  <td>
+                    <button
+                      className="btn-floating red "
+                      onClick={() => this.delete(dato._id)}
+                    >
+                      <i className="material-icons">delete</i>
+                    </button>
+                    <ModalUpdate operation={dato._id} clickHandler={this.getOperations}/>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
 
-        <Modal />
+        <Modal clickHandler={this.getOperations}/>
       </div>
     );
   }

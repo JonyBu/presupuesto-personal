@@ -53,7 +53,7 @@ router.post("/user/login", async (req, res) => {
       message: "no registrado",
     });
   else {
-    res.send("success");
+    res.send("success")
   }
 });
 

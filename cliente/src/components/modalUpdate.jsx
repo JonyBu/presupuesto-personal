@@ -17,7 +17,7 @@ class ModalUpdate extends Component {
       startingTop: "4%",
       endingTop: "10%",
     };
-    M.Modal.init(this.Modal, options);
+    M.Modal.init(this.ModalUpdate, options);
     M.Datepicker.init(this.datepicker);
     M.FormSelect.init(this.FormSelect);
     M.FormSelect.init(this.FormSelect2);
@@ -30,8 +30,9 @@ class ModalUpdate extends Component {
   };
 
   update = () => {
+    console.log(this.props.operation)
     fetch(
-      `http://localhost:8080/api/operations/update/${this.props.operation._id}`,
+      `http://localhost:8080/api/operations/update/${this.props.operation}`,
       {
         method: "PUT",
         body: JSON.stringify(this.state),
@@ -42,6 +43,7 @@ class ModalUpdate extends Component {
     )
       .then((res) => {
         res.json();
+        this.props.clickHandler();
       })
       .catch((error) => console.error("Error:", error));
   };
@@ -52,16 +54,16 @@ class ModalUpdate extends Component {
         <div className="margin-top ">
         <button
               className="btn btn-floating blue modal-trigger"
-              data-target="modal1"
+              data-target="modalUpdate"
             >
               <i className="material-icons">edit</i>
             </button>
         </div>
         <div
-          ref={(Modal) => {
-            this.Modal = Modal;
+          ref={(ModalUpdate1) => {
+            this.ModalUpdate = ModalUpdate1;
           }}
-          id="modal1"
+          id="modalUpdate"
           className="modal"
         >
           <div className="modal-content">

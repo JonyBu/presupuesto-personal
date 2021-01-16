@@ -1,6 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
 class Login extends React.Component {
   constructor() {
     super();
@@ -19,8 +17,7 @@ class Login extends React.Component {
       }).then(res => res.json())
       .catch(error => console.error('Error:', error))
       .then(response => {
-          alert("Welcome "+response.name);
-          sessionStorage.setItem('name', response.name);
+          this.props.history.push('/')
       });
     }
 

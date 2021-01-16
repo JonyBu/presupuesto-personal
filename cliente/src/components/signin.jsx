@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 class Signin extends React.Component {
     constructor(){
@@ -10,7 +9,6 @@ class Signin extends React.Component {
     }
 
     sendSignin = () => {
-
         fetch(`http://localhost:8080/api/user/signin`, {
             method: 'POST',
             body: JSON.stringify(this.state), 
@@ -68,11 +66,6 @@ class Signin extends React.Component {
 
           <button className="btn" onClick={this.sendSignin.bind(this) }>Send</button>
         </div>
-
-        <button className="btn" >
-            <Link to="login">
-            </Link>
-            Loguin</button>
 
       </div>
     );

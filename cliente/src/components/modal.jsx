@@ -5,13 +5,12 @@ import "materialize-css/dist/css/materialize.min.css";
 class Modal extends Component {
   constructor() {
     super();
-    this.state = {
-    };
-    console.log(this.state)
+    this.state = {};
+    console.log(this.state);
   }
-  
+
   componentDidMount() {
-    this.setState({operation:this.props.operation})
+    this.setState({ operation: this.props.operation });
     const options = {
       inDuration: 250,
       outDuration: 250,
@@ -33,7 +32,7 @@ class Modal extends Component {
   };
 
   setOperation = () => {
-    console.log("setOP")
+    console.log("setOP");
     fetch(`http://localhost:8080/api/operations/create`, {
       method: "POST",
       body: JSON.stringify(this.state),
@@ -41,7 +40,10 @@ class Modal extends Component {
         "Content-Type": "application/json",
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        res.json();
+        this.props.clickHandler();
+      })
       .catch((error) => console.error("Error:", error));
   };
 
@@ -49,13 +51,12 @@ class Modal extends Component {
     return (
       <>
         <div className="margin-top ">
-            <button
-              class="waves-effect waves-light btn modal-trigger"
-              data-target="modal1"
-            >
-              <i class="material-icons left">add</i>Agregar nueva operación
-            </button>
-       
+          <button
+            class="waves-effect waves-light btn modal-trigger"
+            data-target="modal1"
+          >
+            <i class="material-icons left">add</i>Agregar nueva operación
+          </button>
         </div>
         <div
           ref={(modal) => {
