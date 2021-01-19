@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import M from "materialize-css";
-import "materialize-css/dist/css/materialize.min.css";
 
 class ModalUpdate extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      userName : sessionStorage.getItem('UserName')
+    };
   }
 
   componentDidMount() {
@@ -30,7 +31,6 @@ class ModalUpdate extends Component {
   };
 
   update = () => {
-    console.log(this.props.operation)
     fetch(
       `http://localhost:8080/api/operations/update/${this.props.operation}`,
       {
@@ -74,12 +74,11 @@ class ModalUpdate extends Component {
                     <div className="input-field col s12">
                       <input
                         name="concept"
-                        id="concept"
                         type="text"
                         className="validate"
                         onChange={this.onChange.bind(this)}
                       ></input>
-                      <label for="concept">Concept</label>
+                      <label htmlFor="concept">Concept</label>
                     </div>
                   </div>
 
@@ -87,34 +86,32 @@ class ModalUpdate extends Component {
                     <div className="input-field col s12">
                       <input
                         name="amount"
-                        id="amount"
                         type="number"
                         className="validate"
                         onChange={this.onChange.bind(this)}
                       ></input>
-                      <label for="amount">Amount</label>
+                      <label htmlFor="amount">Amount</label>
                     </div>
                   </div>
 
                   <div className="row">
-                    <div class="input-field col s12">
+                    <div className="input-field col s12">
                       <select
                         ref={(FormSelect) => {
                           this.FormSelect = FormSelect;
                         }}
                         type="type"
                         name="type"
-                        id="type"
                         value={this.state.select}
                         onChange={this.onChange.bind(this)}
                       >
-                        <option value="" disabled selected>
+                        <option value="" disabled >
                           Choose your option
                         </option>
                         <option value="Ingreso">Ingreso</option>
                         <option value="Egreso">Egreso</option>
                       </select>
-                      <label for="type">Tipo</label>
+                      <label htmlFor="type">Tipo</label>
                     </div>
                   </div>
 
@@ -126,11 +123,11 @@ class ModalUpdate extends Component {
                         }}
                         type="category"
                         name="category"
-                        id="category"
                         value={this.state.select}
                         onChange={this.onChange.bind(this)}
+                        defaultValue={'DEFAULT'}
                       >
-                        <option value="" disabled selected>
+                        <option value="DEFAULT" disabled>
                           Choose your option
                         </option>
                         <option value="Comida">Comida</option>
@@ -139,8 +136,10 @@ class ModalUpdate extends Component {
                         <option value="Impuestos">Impuestos</option>
                         <option value="Personal">Personal</option>
                         <option value="Mercadería">Mercadería</option>
+                        <option value="Reparaciones">Reparaciones</option>
+                        <option value="Proveedores">Proveedores</option>
                       </select>
-                      <label for="category">Category</label>
+                      <label htmlFor="category">Category</label>
                     </div>
                   </div>
                 </form>
@@ -148,7 +147,7 @@ class ModalUpdate extends Component {
             </div>
           </div>
 
-          <div class="modal-footer">
+          <div className="modal-footer">
             <button
               className="modal-close btn blue"
               onClick={this.update.bind(this)}

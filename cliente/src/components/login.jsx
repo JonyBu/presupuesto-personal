@@ -8,24 +8,26 @@ class Login extends React.Component {
   }
 
   sendLogin = () => {
-    fetch(`http://localhost:8080/api/user/login`,{
-        method: 'POST',
-        body: JSON.stringify(this.state), 
-        headers:{
-          'Content-Type': 'application/json'
-        }
-      }).then(res => res.json())
-      .catch(error => console.error('Error:', error))
-      .then(response => {
-          this.props.history.push('/')
-      });
-    }
+    fetch(`http://localhost:8080/api/user/login`, {
+      method: "POST",
+      body: JSON.stringify(this.state),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.text())
+      .then((text) => {
+        sessionStorage.setItem("UserName", text);
+        alert("Bienvenido " + text);
+        this.props.history.push("/");
+      })
+      .catch((error) => console.error("Error:", error));
+  };
 
   onChange = (e) => {
     var state = this.state;
     state[e.target.name] = e.target.value;
     this.setState(state);
-    console.log(this.state)
   };
 
   render() {
@@ -36,26 +38,26 @@ class Login extends React.Component {
             <div className="row">
               <div className="input-field col s12">
                 <input
-                name="email"
+                  name="email"
                   id="email"
                   type="email"
                   className="validate"
                   onChange={this.onChange.bind(this)}
                 ></input>
-                <label for="email">Email</label>
+                <label htmlFor="email">Email</label>
               </div>
             </div>
 
             <div className="row">
               <div className="input-field col s12">
                 <input
-                name="password"
+                  name="password"
                   id="password"
                   type="password"
                   className="validate"
                   onChange={this.onChange.bind(this)}
                 ></input>
-                <label for="password">Password</label>
+                <label htmlFor="password">Password</label>
               </div>
             </div>
           </form>

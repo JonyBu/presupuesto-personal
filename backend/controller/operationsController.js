@@ -4,8 +4,8 @@ const router = express.Router();
 const operationsModel = require("../model/operationsModel");
 
 router.post("/operations/create", (req, res) => {
-  console.log(req.body);
   var newModel = new operationsModel({
+    userName: req.body.userName,
     concept: req.body.concept,
     amount: req.body.amount,
     date: Date.now(),
@@ -18,14 +18,13 @@ router.post("/operations/create", (req, res) => {
 });
 
 router.put(`/operations/update/:_id`, async (req, res) => {
-  console.log(req.body);
-  console.log(req.params._id);
   const id = req.params._id;
   await operationsModel
     .updateOne(
       { _id: id },
       {
         $set: {
+          userName: req.body.userName,
           concept: req.body.concept,
           amount: req.body.amount,
           date: Date.now(),

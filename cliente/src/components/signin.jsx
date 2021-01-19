@@ -39,14 +39,14 @@ class Signin extends React.Component {
             <div className="row">
               <div className="input-field col s12">
                 <input name="name" id="name" type="text" className="validate" onChange={this.onChange.bind(this)}></input>
-                <label for="name">Name</label>
+                <label htmlFor="name">Name</label>
               </div>
             </div>
 
             <div className="row">
               <div className="input-field col s12">
                 <input name="email" id="email" type="email" className="validate" onChange={this.onChange.bind(this)}></input>
-                <label for="email">Email</label>
+                <label htmlFor="email">Email</label>
               </div>
             </div>
 
@@ -59,7 +59,7 @@ class Signin extends React.Component {
                   className="validate"
                   onChange={this.onChange.bind(this)}
                 ></input>
-                <label for="password">Password</label>
+                <label htmlFor="password">Password</label>
               </div>
             </div>
           </form>

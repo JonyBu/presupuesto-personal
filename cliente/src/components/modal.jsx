@@ -1,16 +1,24 @@
 import React, { Component } from "react";
 import M from "materialize-css";
-import "materialize-css/dist/css/materialize.min.css";
 
 class Modal extends Component {
   constructor() {
     super();
-    this.state = {};
-    console.log(this.state);
+    this.state = {
+      userName: sessionStorage.getItem("UserName"),
+    };
   }
 
   componentDidMount() {
-    this.setState({ operation: this.props.operation });
+    this.setState({
+      operation: this.props.operation,
+    });
+    if (sessionStorage.getItem("UserName")=== null) {
+      alert("Esta cargando datos sin registrarse. \nAparecerá como no registrado")
+      this.setState({
+        userName: 'No registrado',
+      })
+    }
     const options = {
       inDuration: 250,
       outDuration: 250,
@@ -32,7 +40,7 @@ class Modal extends Component {
   };
 
   setOperation = () => {
-    console.log("setOP");
+
     fetch(`http://localhost:8080/api/operations/create`, {
       method: "POST",
       body: JSON.stringify(this.state),
@@ -52,10 +60,10 @@ class Modal extends Component {
       <>
         <div className="margin-top ">
           <button
-            class="waves-effect waves-light btn modal-trigger"
+            className="waves-effect waves-light btn modal-trigger"
             data-target="modal1"
           >
-            <i class="material-icons left">add</i>Agregar nueva operación
+            <i className="material-icons left">add</i>Agregar nueva operación
           </button>
         </div>
         <div
@@ -73,12 +81,11 @@ class Modal extends Component {
                     <div className="input-field col s12">
                       <input
                         name="concept"
-                        id="concept"
                         type="text"
                         className="validate"
                         onChange={this.onChange.bind(this)}
                       ></input>
-                      <label for="concept">Concept</label>
+                      <label htmlFor="concept">Concept</label>
                     </div>
                   </div>
 
@@ -86,34 +93,32 @@ class Modal extends Component {
                     <div className="input-field col s12">
                       <input
                         name="amount"
-                        id="amount"
                         type="number"
                         className="validate"
                         onChange={this.onChange.bind(this)}
                       ></input>
-                      <label for="amount">Amount</label>
+                      <label htmlFor="amount">Amount</label>
                     </div>
                   </div>
 
                   <div className="row">
-                    <div class="input-field col s12">
+                    <div className="input-field col s12">
                       <select
                         ref={(FormSelect) => {
                           this.FormSelect = FormSelect;
                         }}
                         type="type"
                         name="type"
-                        id="type"
                         value={this.state.select}
                         onChange={this.onChange.bind(this)}
                       >
-                        <option value="" disabled selected>
+                        <option value="" disabled>
                           Choose your option
                         </option>
                         <option value="Ingreso">Ingreso</option>
                         <option value="Egreso">Egreso</option>
                       </select>
-                      <label for="type">Tipo</label>
+                      <label htmlFor="type">Tipo</label>
                     </div>
                   </div>
 
@@ -125,20 +130,23 @@ class Modal extends Component {
                         }}
                         type="category"
                         name="category"
-                        id="category"
                         value={this.state.select}
                         onChange={this.onChange.bind(this)}
+                        defaultValue={'DEFAULT'}
                       >
-                        <option value="" disabled selected>
+                        <option value="DEFAULT" disabled>
                           Choose your option
                         </option>
                         <option value="Comida">Comida</option>
+                        <option value="Limpieza">Limpieza</option>
                         <option value="Servicios">Servicios</option>
                         <option value="Impuestos">Impuestos</option>
                         <option value="Personal">Personal</option>
                         <option value="Mercadería">Mercadería</option>
+                        <option value="Reparaciones">Reparaciones</option>
+                        <option value="Proveedores">Proveedores</option>
                       </select>
-                      <label for="category">Category</label>
+                      <label htmlFor="category">Category</label>
                     </div>
                   </div>
                 </form>
@@ -146,7 +154,7 @@ class Modal extends Component {
             </div>
           </div>
 
-          <div class="modal-footer">
+          <div className="modal-footer">
             <button
               className="modal-close btn blue"
               onClick={this.setOperation.bind(this)}
