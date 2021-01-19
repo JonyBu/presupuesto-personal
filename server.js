@@ -4,6 +4,7 @@ require("dotenv").config();
 var cors = require('cors')
  
 const express = require("express");
+const path = require('path');
 const bodyParser = require("body-parser");
 
 const app = express();
@@ -11,6 +12,12 @@ app.use(cors())
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(express.static(path.join(__dirname, 'cliente/build')));
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'cliente/build', 'index.html'));
+});
 
 const port = process.env.PORT || 3001;
 
