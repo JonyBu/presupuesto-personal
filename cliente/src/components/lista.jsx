@@ -1,7 +1,6 @@
 import React from "react";
 
 import Modal from "./modal";
-import ModalUpdate from "./modalUpdate";
 
 import M from "materialize-css";
 
@@ -59,6 +58,11 @@ class ListaOperaciones extends React.Component {
   async componentDidMount() {
     await this.getOperations();
     M.FormSelect.init(this.FormSelect3);
+    if (sessionStorage.getItem("UserName") === null) {
+      alert(
+        "Si registra operaciones sin registrarse. \nAparecerá como no registrado \nInicie sessión "
+      );
+    }
   }
 
   render() {
@@ -78,9 +82,9 @@ class ListaOperaciones extends React.Component {
               id="category"
               value={this.state.select}
               onChange={this.handleChange}
-              defaultValue={'DEFAULT'}
+              defaultValue={"DEFAULT"}
             >
-              <option value="DEFAULT" disabled >
+              <option value="DEFAULT" disabled>
                 Choose an option to sort table
               </option>
               <option value="Comida">Comida</option>
@@ -126,7 +130,7 @@ class ListaOperaciones extends React.Component {
                     >
                       <i className="material-icons">delete</i>
                     </button>
-                    <ModalUpdate
+                    <Modal
                       operation={dato._id}
                       clickHandler={this.getOperations}
                     />

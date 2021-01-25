@@ -5,7 +5,8 @@ class Modal extends Component {
   constructor() {
     super();
     this.state = {
-      userName: sessionStorage.getItem("UserName"),
+      userName: sessionStorage.getItem("UserName") || "no registrado",
+      operation: [],
     };
   }
 
@@ -13,12 +14,7 @@ class Modal extends Component {
     this.setState({
       operation: this.props.operation,
     });
-    if (sessionStorage.getItem("UserName")=== null) {
-      alert("Esta cargando datos sin registrarse. \nAparecerá como no registrado")
-      this.setState({
-        userName: 'No registrado',
-      })
-    }
+
     const options = {
       inDuration: 250,
       outDuration: 250,
@@ -40,7 +36,6 @@ class Modal extends Component {
   };
 
   setOperation = () => {
-
     fetch(`http://localhost:8080/api/operations/create`, {
       method: "POST",
       body: JSON.stringify(this.state),
@@ -55,16 +50,43 @@ class Modal extends Component {
       .catch((error) => console.error("Error:", error));
   };
 
+  update = () => {
+    fetch(
+      `http://localhost:8080/api/operations/update/${this.props.operation}`,
+      {
+        method: "PUT",
+        body: JSON.stringify(this.state),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((res) => {
+        res.json();
+        this.props.clickHandler();
+      })
+      .catch((error) => console.error("Error:", error));
+  };
+
   render() {
     return (
       <>
         <div className="margin-top ">
-          <button
-            className="waves-effect waves-light btn modal-trigger"
-            data-target="modal1"
-          >
-            <i className="material-icons left">add</i>Agregar nueva operación
-          </button>
+          {this.state.operation ? (
+            <button
+              className="btn btn-floating blue modal-trigger"
+              data-target="modal1"
+            >
+              <i className="material-icons">edit</i>
+            </button>
+          ) : (
+            <button
+              className="waves-effect waves-light btn modal-trigger"
+              data-target="modal1"
+            >
+              <i className="material-icons left">add</i>Agregar nueva operación
+            </button>
+          )}
         </div>
         <div
           ref={(modal) => {
@@ -132,7 +154,7 @@ class Modal extends Component {
                         name="category"
                         value={this.state.select}
                         onChange={this.onChange.bind(this)}
-                        defaultValue={'DEFAULT'}
+                        defaultValue={"DEFAULT"}
                       >
                         <option value="DEFAULT" disabled>
                           Choose your option
@@ -157,7 +179,7 @@ class Modal extends Component {
           <div className="modal-footer">
             <button
               className="modal-close btn blue"
-              onClick={this.setOperation.bind(this)}
+              onClick={this.props.operation? this.update.bind(this) : this.setOperation.bind(this)}
             >
               Agree
             </button>
