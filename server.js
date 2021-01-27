@@ -1,11 +1,12 @@
 require("./backend/database");
-require("dotenv").config();
 
 var cors = require('cors')
- 
+
 const express = require("express");
 const path = require('path');
 const bodyParser = require("body-parser");
+
+require("dotenv").config({path:'.env'});
 
 const app = express();
 app.use(cors())
