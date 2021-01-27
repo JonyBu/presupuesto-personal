@@ -7,9 +7,16 @@ class Signin extends React.Component {
 
         }
     }
-
+    
     sendSignin = () => {
-        fetch(`http://localhost:8080/api/user/signin`, {
+      
+          let QUOTE_SERVICE_URL = `http://localhost:8080/api/user/signin`
+      
+          if (process.env.NODE_ENV === "production") {
+            QUOTE_SERVICE_URL = `/api/user/signin`
+          }
+
+        fetch(QUOTE_SERVICE_URL, {
             method: 'POST',
             body: JSON.stringify(this.state), 
             headers:{

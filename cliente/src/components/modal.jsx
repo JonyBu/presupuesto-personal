@@ -36,7 +36,13 @@ class Modal extends Component {
   };
 
   setOperation = () => {
-    fetch(`http://localhost:8080/api/operations/create`, {
+    let QUOTE_SERVICE_URL = `http://localhost:8080/api/operations/create`
+      
+    if (process.env.NODE_ENV === "production") {
+      QUOTE_SERVICE_URL = `/api/operations/create`
+    }
+
+    fetch(QUOTE_SERVICE_URL, {
       method: "POST",
       body: JSON.stringify(this.state),
       headers: {
@@ -51,8 +57,13 @@ class Modal extends Component {
   };
 
   update = () => {
+    let QUOTE_SERVICE_URL = `http://localhost:8080/api/operations/update/${this.props.operation}`
+      
+    if (process.env.NODE_ENV === "production") {
+      QUOTE_SERVICE_URL = `/api/operations/update/${this.props.operation}`
+    }
     fetch(
-      `http://localhost:8080/api/operations/update/${this.props.operation}`,
+     QUOTE_SERVICE_URL,
       {
         method: "PUT",
         body: JSON.stringify(this.state),

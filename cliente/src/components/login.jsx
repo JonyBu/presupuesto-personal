@@ -8,7 +8,12 @@ class Login extends React.Component {
   }
 
   sendLogin = () => {
-    fetch(`http://localhost:8080/api/user/login`, {
+    let QUOTE_SERVICE_URL = `http://localhost:8080/api/user/login`
+      
+    if (process.env.NODE_ENV === "production") {
+      QUOTE_SERVICE_URL = `/api/user/login`
+    }
+    fetch(QUOTE_SERVICE_URL, {
       method: "POST",
       body: JSON.stringify(this.state),
       headers: {

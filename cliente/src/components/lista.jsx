@@ -15,7 +15,12 @@ class ListaOperaciones extends React.Component {
   }
 
   getOperations = () => {
-    fetch(`http://localhost:8080/api/operations`)
+    let QUOTE_SERVICE_URL = `http://localhost:8080/api/operations`
+      
+    if (process.env.NODE_ENV === "production") {
+      QUOTE_SERVICE_URL = `/api/operations`
+    }
+    fetch(QUOTE_SERVICE_URL)
       .then((response) => response.json())
       .then((data) =>
         this.setState({
@@ -30,7 +35,12 @@ class ListaOperaciones extends React.Component {
     var operation = {
       _id,
     };
-    fetch(`http://localhost:8080/api/operations/delete`, {
+    let QUOTE_SERVICE_URL = `http://localhost:8080/api/operations/delete`
+      
+    if (process.env.NODE_ENV === "production") {
+      QUOTE_SERVICE_URL = `/api/operations/delete`
+    }
+    fetch(QUOTE_SERVICE_URL, {
       method: "DELETE",
       body: JSON.stringify(operation),
       headers: {

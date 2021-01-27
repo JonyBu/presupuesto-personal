@@ -16,7 +16,12 @@ class Home extends React.Component {
   }
 
   getOperations = () => {
-    fetch(`http://localhost:8080/api/operations`)
+    let QUOTE_SERVICE_URL = `http://localhost:8080/api/operations`
+      
+    if (process.env.NODE_ENV === "production") {
+      QUOTE_SERVICE_URL = `/api/operations`
+    }
+    fetch(QUOTE_SERVICE_URL)
       .then((response) => response.json())
       .then((data) => {
         this.setState({
