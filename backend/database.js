@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-require("dotenv").config();
+if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 
 const MONGODB_URI = `mongodb+srv://${process.env.USER_DB}:${process.env.PASS_DB}@mytinerary.ehihp.mongodb.net/${process.env.NAME_DB}?retryWrites=true&w=majority`;
 
