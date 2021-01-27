@@ -27,6 +27,15 @@ const users = require("./backend/controller/userController");
 app.use("/api", operations);
 app.use("/api", users);
 
+if (process.env.NODE_ENV === "production") {
+  // Set static folder
+  app.use(express.static("cliente/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "cliente", "build", "index.html"));
+  });
+}
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
