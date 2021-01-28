@@ -36,10 +36,10 @@ class Modal extends Component {
   };
 
   setOperation = () => {
-    let QUOTE_SERVICE_URL = `http://localhost:8080/api/operations/create`
-      
+    let QUOTE_SERVICE_URL = `http://localhost:8080/api/operations/create`;
+
     if (process.env.NODE_ENV === "production") {
-      QUOTE_SERVICE_URL = `/api/operations/create`
+      QUOTE_SERVICE_URL = `/api/operations/create`;
     }
 
     fetch(QUOTE_SERVICE_URL, {
@@ -57,21 +57,18 @@ class Modal extends Component {
   };
 
   update = () => {
-    let QUOTE_SERVICE_URL = `http://localhost:8080/api/operations/update/${this.props.operation}`
-      
+    let QUOTE_SERVICE_URL = `http://localhost:8080/api/operations/update/${this.props.operation}`;
+
     if (process.env.NODE_ENV === "production") {
-      QUOTE_SERVICE_URL = `/api/operations/update/${this.props.operation}`
+      QUOTE_SERVICE_URL = `/api/operations/update/${this.props.operation}`;
     }
-    fetch(
-     QUOTE_SERVICE_URL,
-      {
-        method: "PUT",
-        body: JSON.stringify(this.state),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    fetch(QUOTE_SERVICE_URL, {
+      method: "PUT",
+      body: JSON.stringify(this.state),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((res) => {
         res.json();
         this.props.clickHandler();
@@ -82,7 +79,7 @@ class Modal extends Component {
   render() {
     return (
       <>
-        <div className="margin-top ">
+        <div>
           {this.state.operation ? (
             <button
               className="btn btn-floating blue modal-trigger"
@@ -92,7 +89,7 @@ class Modal extends Component {
             </button>
           ) : (
             <button
-              className="waves-effect waves-light btn modal-trigger"
+              className="waves-effect waves-light btn modal-trigger margin-top"
               data-target="modal1"
             >
               <i className="material-icons left">add</i>Agregar nueva operación
@@ -190,7 +187,11 @@ class Modal extends Component {
           <div className="modal-footer">
             <button
               className="modal-close btn blue"
-              onClick={this.props.operation? this.update.bind(this) : this.setOperation.bind(this)}
+              onClick={
+                this.props.operation
+                  ? this.update.bind(this)
+                  : this.setOperation.bind(this)
+              }
             >
               Agree
             </button>

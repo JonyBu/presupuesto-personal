@@ -5,3 +5,12 @@
 .margin-top{
   margin-top: 1em;
 }
+
+.inline{
+  display: inline-flex;
+}
+
+.margin-right{
+  margin-right: 1vh;
+}
+

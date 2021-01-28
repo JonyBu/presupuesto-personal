@@ -16,10 +16,10 @@ class Home extends React.Component {
   }
 
   getOperations = () => {
-    let QUOTE_SERVICE_URL = `http://localhost:8080/api/operations`
-      
+    let QUOTE_SERVICE_URL = `http://localhost:8080/api/operations`;
+
     if (process.env.NODE_ENV === "production") {
-      QUOTE_SERVICE_URL = `/api/operations`
+      QUOTE_SERVICE_URL = `/api/operations`;
     }
     fetch(QUOTE_SERVICE_URL)
       .then((response) => response.json())
@@ -64,10 +64,10 @@ class Home extends React.Component {
     var largo = 10;
 
     if (ordenado.length < largo) {
-      largo = ordenado.length
+      largo = ordenado.length;
     }
 
-    for (let index = 0; index < largo ; index++) {
+    for (let index = 0; index < largo; index++) {
       const element = ordenado[index];
       losDiez.push(element);
     }
@@ -78,10 +78,10 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div>
+      <>
         <div className="container">
           <h4>Balance actual</h4>
-          <table className="responsive-table">
+          <table>
             <thead>
               <tr>
                 <th>Ingresos</th>
@@ -102,7 +102,7 @@ class Home extends React.Component {
 
         <div className="container">
           <h4>Últimos 10 registrados</h4>
-          <table className="responsive-table">
+          <table className="highlight">
             <thead>
               <tr>
                 <th>Fecha</th>
@@ -125,7 +125,7 @@ class Home extends React.Component {
             </tbody>
           </table>
         </div>
-      </div>
+      </>
     );
   }
 }

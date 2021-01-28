@@ -41,8 +41,8 @@ class Signin extends React.Component {
   render() {
     return (
       <div className="margin-top">
-        <div className="row container">
-          <form className="col s12">
+        <div className="row container ">
+          <form className="col s12 ">
             <div className="row">
               <div className="input-field col s12">
                 <input name="name" id="name" type="text" className="validate" onChange={this.onChange.bind(this)}></input>
@@ -69,9 +69,9 @@ class Signin extends React.Component {
                 <label htmlFor="password">Password</label>
               </div>
             </div>
+          <button className="btn" onClick={this.sendSignin.bind(this) }>Send</button>
           </form>
 
-          <button className="btn" onClick={this.sendSignin.bind(this) }>Send</button>
         </div>
 
       </div>

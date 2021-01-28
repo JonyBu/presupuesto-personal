@@ -15,10 +15,10 @@ class ListaOperaciones extends React.Component {
   }
 
   getOperations = () => {
-    let QUOTE_SERVICE_URL = `http://localhost:8080/api/operations`
-      
+    let QUOTE_SERVICE_URL = `http://localhost:8080/api/operations`;
+
     if (process.env.NODE_ENV === "production") {
-      QUOTE_SERVICE_URL = `/api/operations`
+      QUOTE_SERVICE_URL = `/api/operations`;
     }
     fetch(QUOTE_SERVICE_URL)
       .then((response) => response.json())
@@ -35,10 +35,10 @@ class ListaOperaciones extends React.Component {
     var operation = {
       _id,
     };
-    let QUOTE_SERVICE_URL = `http://localhost:8080/api/operations/delete`
-      
+    let QUOTE_SERVICE_URL = `http://localhost:8080/api/operations/delete`;
+
     if (process.env.NODE_ENV === "production") {
-      QUOTE_SERVICE_URL = `/api/operations/delete`
+      QUOTE_SERVICE_URL = `/api/operations/delete`;
     }
     fetch(QUOTE_SERVICE_URL, {
       method: "DELETE",
@@ -110,7 +110,7 @@ class ListaOperaciones extends React.Component {
             <label htmlFor="category">Category</label>
           </div>
         </div>
-        <table className="responsive-table">
+        <table className="highlight">
           <thead>
             <tr>
               <th>Registrado por</th>
@@ -130,12 +130,12 @@ class ListaOperaciones extends React.Component {
                   <td>{dato.userName}</td>
                   <td>{dato.concept}</td>
                   <td>{dato.amount}</td>
-                  <td>{dato.date}</td>
+                  <td>{dato.date.substr(0, 10)}</td>
                   <td>{dato.type}</td>
                   <td>{dato.category}</td>
-                  <td>
+                  <td className="inline">
                     <button
-                      className="btn-floating red "
+                      className="btn-floating red margin-right "
                       onClick={() => this.delete(dato._id)}
                     >
                       <i className="material-icons">delete</i>

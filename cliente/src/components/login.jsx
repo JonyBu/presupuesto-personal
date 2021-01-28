@@ -8,10 +8,10 @@ class Login extends React.Component {
   }
 
   sendLogin = () => {
-    let QUOTE_SERVICE_URL = `http://localhost:8080/api/user/login`
-      
+    let QUOTE_SERVICE_URL = `http://localhost:8080/api/user/login`;
+
     if (process.env.NODE_ENV === "production") {
-      QUOTE_SERVICE_URL = `/api/user/login`
+      QUOTE_SERVICE_URL = `/api/user/login`;
     }
     fetch(QUOTE_SERVICE_URL, {
       method: "POST",
@@ -65,11 +65,11 @@ class Login extends React.Component {
                 <label htmlFor="password">Password</label>
               </div>
             </div>
-          </form>
 
-          <button className="btn" onClick={this.sendLogin.bind(this)}>
-            Send
-          </button>
+            <button className="btn" onClick={this.sendLogin.bind(this)}>
+              Send
+            </button>
+          </form>
         </div>
       </div>
     );
