@@ -80,7 +80,7 @@ class ListaOperaciones extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col m12">
-            <h4>Lista de operaciones registradas</h4>
+            <h5>Lista de operaciones registradas</h5>
           </div>
           <div className="input-field col s12 m12">
             <select

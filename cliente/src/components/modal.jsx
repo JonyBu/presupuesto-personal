@@ -89,7 +89,7 @@ class Modal extends Component {
             </button>
           ) : (
             <button
-              className="waves-effect waves-light btn modal-trigger margin-top"
+              className="waves-effect waves-light btn modal-trigger margin-top margin-bottom"
               data-target="modal1"
             >
               <i className="material-icons left">add</i>Agregar nueva operación

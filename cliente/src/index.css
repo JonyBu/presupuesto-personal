@@ -3,14 +3,31 @@
 }
 
 .margin-top{
-  margin-top: 1em;
-}
-
-.inline{
-  display: inline-flex;
+  margin-top: 2em;
 }
 
 .margin-right{
   margin-right: 1vh;
 }
 
+.margin-bottom{
+  margin-bottom: 2em;
+}
+
+.inline{
+  display: inline-flex;
+}
+
+.max{
+  max-width: 50%;
+  border: 3px solid cadetblue;
+  border-radius: 5px;
+  padding: 2em;
+  margin-top: 3em;
+}
+
+@media (max-width: 600px) {
+  .max{
+    max-width: 90%;
+  }
+}

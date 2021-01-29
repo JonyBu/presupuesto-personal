@@ -80,7 +80,7 @@ class Home extends React.Component {
     return (
       <>
         <div className="container">
-          <h4>Balance actual</h4>
+          <h5>Balance actual</h5>
           <table>
             <thead>
               <tr>
@@ -101,7 +101,7 @@ class Home extends React.Component {
         </div>
 
         <div className="container">
-          <h4>Últimos 10 registrados</h4>
+          <h5>Últimos 10 registrados</h5>
           <table className="highlight">
             <thead>
               <tr>

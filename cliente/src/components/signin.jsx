@@ -41,7 +41,7 @@ class Signin extends React.Component {
   render() {
     return (
       <div className="margin-top">
-        <div className="row container ">
+        <div className="row max ">
           <form className="col s12 ">
             <div className="row">
               <div className="input-field col s12">
